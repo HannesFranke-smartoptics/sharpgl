@@ -2030,6 +2030,50 @@ namespace SharpGL
             var str = new string(pStr);
             return str;
         }
+        public void GenFramebuffers(uint count, uint[] buffers)
+        {
+            GetDelegateFor<glGenFramebuffers>()(count, buffers);
+        }
+        public void BindFramebuffer(uint target, uint framebuffer)
+        {
+            GetDelegateFor<glBindFramebuffer>()(target, framebuffer);
+        }
+        public uint CheckFramebufferStatus(uint target)
+        {
+            return (uint)GetDelegateFor<glCheckFramebufferStatus>()(target);
+        }
+        public void BlitFrameBuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, uint filter)
+        {
+            GetDelegateFor<glBlitFramebuffer>()(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+        }
+        public void DeleteFramebuffers(uint n, uint[] framebuffers)
+        {
+            GetDelegateFor<glDeleteFramebuffers>()(n, framebuffers);
+        }
+        public void GenRenderbuffers (uint n, uint[] renderbuffers)
+        {
+            GetDelegateFor<glGenRenderbuffers>()(n, renderbuffers);
+        }
+        public void BindRenderbuffer(uint target, uint renderbuffer)
+        {
+            GetDelegateFor<glBindRenderbuffer>()(target, renderbuffer);
+        }
+        public void RenderbufferStorage (uint target, uint internalformat, uint width, uint height)
+        {
+            GetDelegateFor<glRenderbufferStorage>()(target, internalformat, width, height);
+        }
+        public void FramebufferTexture2D(uint target, uint attachment, uint textarget, uint texture, int level)
+        {
+            GetDelegateFor<glFramebufferTexture2D>()(target, attachment, textarget, texture, level);
+        }
+        public void FramebufferRenderbuffer (uint target, uint attachment, uint renderbuffertarget, uint renderbuffer)
+        {
+            GetDelegateFor<glFramebufferRenderbuffer>()(target, attachment, renderbuffertarget, renderbuffer);
+        }
+        public void DeleteRenderbuffers(uint n, uint[] renderbuffers)
+        {
+            GetDelegateFor<glDeleteRenderbuffers>()(n, renderbuffers);
+        }
 
         //  Delegates
         private delegate void glColorMaski (uint index, bool r, bool g, bool b, bool a);
@@ -2090,6 +2134,17 @@ namespace SharpGL
         private delegate void glClearBufferfv (uint buffer, int drawbuffer, float[] value);
         private delegate void glClearBufferfi (uint buffer, int drawbuffer, float depth, int stencil);
         private delegate IntPtr glGetStringi (uint name, uint index);
+        private delegate void glGenFramebuffers (uint n, uint[] ids);
+        private delegate void glBindFramebuffer(uint target, uint framebuffer);
+        private delegate uint glCheckFramebufferStatus(uint target);
+        private delegate void glBlitFramebuffer (int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, uint filter);
+        private delegate void glDeleteFramebuffers (uint n, uint[] framebuffers);
+        private delegate void glGenRenderbuffers (uint n, uint[] renderbuffers);
+        private delegate void glBindRenderbuffer (uint target, uint renderbuffer);
+        private delegate void glRenderbufferStorage (uint target, uint internalformat, uint width, uint height);
+        private delegate void glFramebufferTexture2D (uint target, uint attachment, uint textarget, uint texture, int level);
+        private delegate void glFramebufferRenderbuffer (uint target, uint attachment, uint renderbuffertarget, uint renderbuffer);
+        private delegate void glDeleteRenderbuffers(uint n, uint[] renderbuffers);
 
         //  Constants
         public const uint GL_COMPARE_REF_TO_TEXTURE                        = 0x884E;
@@ -2148,6 +2203,12 @@ namespace SharpGL
         public const uint GL_SEPARATE_ATTRIBS                              = 0x8C8D;
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER                     = 0x8C8E;
         public const uint GL_TRANSFORM_FEEDBACK_BUFFER_BINDING             = 0x8C8F;
+        public const uint GL_READ_FRAMEBUFFER                              = 0x8CA8;
+        public const uint GL_DRAW_FRAMEBUFFER                              = 0x8CA9;
+        public const uint GL_COLOR_ATTACHMENT0                             = 0x8CE0;
+        public const uint GL_FRAMEBUFFER_COMPLETE                          = 0x8CD5;
+        public const uint GL_DEPTH_ATTACHMENT                              = 0x8D00;
+        public const uint GL_FRAMEBUFFER                                   = 0x8D40;
         public const uint GL_RGBA32UI                                      = 0x8D70;
         public const uint GL_RGB32UI                                       = 0x8D71;
         public const uint GL_RGBA16UI                                      = 0x8D76;

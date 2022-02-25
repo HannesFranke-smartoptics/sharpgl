@@ -101,7 +101,9 @@ namespace SharpGL.RenderContextProviders
                 {
                     OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  
                     OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
-                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+                    OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB
+//                    | OpenGL.WGL_CONTEXT_DEBUG_BIT_ARB
+                    ,
                     0
                 };
                 var hrc = gl.CreateContextAttribsARB(IntPtr.Zero, attributes);

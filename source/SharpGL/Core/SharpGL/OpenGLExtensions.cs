@@ -5479,8 +5479,30 @@ namespace SharpGL
             GetDelegateFor<glMultiDrawElementsIndirect>()(mode, type, indirect, primcount, stride);
         }
 
+        private delegate void glDebugMessageControl(uint source, uint type, uint severity, uint count, uint[] ids, bool enabled);
+public        const uint GL_DEBUG_OUTPUT = 0x92E0;
+ public        const uint GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
+
+        public void DebugMessageControl(uint source, uint type, uint severity, uint count, uint[] ids, bool enabled)
+        {
+            GetDelegateFor<glDebugMessageControl>()(source, type, severity, count, ids, enabled);
+        }
+
+private unsafe delegate void        glDebugMessageInsert(uint source​, uint type​, uint id​, uint severity​, uint length​, char* message​);
+
+
         private delegate void glMultiDrawArraysIndirect(uint mode, IntPtr indirect, uint primcount, uint stride);
         private delegate void glMultiDrawElementsIndirect(uint mode, uint type, IntPtr indirect, uint primcount, uint stride);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        public unsafe delegate void glDebugMessageCallbackProc(uint source, uint type, uint id, uint severity, int length, char* msg, void* userParam);
+
+private unsafe delegate void glDebugMessageCallback(glDebugMessageCallbackProc callback, void* userParam);
+
+        public unsafe void DebugCallback(glDebugMessageCallbackProc proc, void* userParam)
+        {
+            GetDelegateFor<glDebugMessageCallback>()(proc, userParam);
+        }
 
         #endregion
 
